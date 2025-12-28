@@ -1,8 +1,35 @@
-api : v1
-kind : namespace
-metadata :
-  name : chatbot
+# api : v1
+# kind : namespace
+# metadata :
+#   name : chatbot
+# ---
+# api : apps/v1
+# kind : deployment
+# metadata :
+#   name : chatbot-deployment
+#   namespace : chatbot
+# spec :
+#   replicas : 3
+#   selector :
+#     matchLabels :
+#       app : chatbot
+#   template :
+#     metadata :
+#       labels :
+#         app : chatbot
+#     spec :
+#       containers :
+#         - name : chatbot-container
+#           image : ngnix:latest
+#           ports :
+#             - containerPort : 8080
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: chatbot
 ---
+<<<<<<< HEAD
 api : v1
 kind : deployment
 metadata :
@@ -23,3 +50,25 @@ spec :
           image : chatbot-app:latest
           ports :
             - containerPort : 8080
+=======
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatbot-deployment
+  namespace: chatbot
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: chatbot
+  template:
+    metadata:
+      labels:
+        app: chatbot
+    spec:
+      containers:
+        - name: chatbot-container
+          image: nginx:latest   # placeholder image
+          ports:
+            - containerPort: 80
+>>>>>>> 526142aea0755091dc34d22c5b5426a6af38b075
