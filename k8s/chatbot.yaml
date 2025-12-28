@@ -1,0 +1,25 @@
+api : v1
+kind : namespace
+metadata :
+  name : chatbot
+---
+api : v1
+kind : deployment
+metadata :
+  name : chatbot-deployment
+  namespace : chatbot
+spec :
+  replicas : 3
+  selector :
+    matchLabels :
+      app : chatbot
+  template :
+    metadata :
+      labels :
+        app : chatbot
+    spec :
+      containers :
+        - name : chatbot-container
+          image : ngnix:latest
+          ports :
+            - containerPort : 8080
